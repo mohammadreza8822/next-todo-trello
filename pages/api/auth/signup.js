@@ -28,7 +28,7 @@ async function handler(req, res) {
       .json({ status: "failed", message: "User exists already!" });
   }
 
-  const hashedPassword = await hashedPassword(password);
+  const hashedPassword = await hashPassword(password);
 
   const newUser = await User.create({ email, password: hashedPassword });
   console.log(newUser);
