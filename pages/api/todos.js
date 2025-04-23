@@ -4,7 +4,6 @@ import { sortTodos } from "@/utils/sortTodos";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth].js";
-import { getSession } from "next-auth/react";
 
 async function handler(req, res) {
   try {
@@ -46,6 +45,20 @@ async function handler(req, res) {
   } else if (req.method === "GET") {
     const sortedData = sortTodos(user.todos);
     res.status(200).json({ status: "success", data: { todos: sortedData } });
+  } else if (req.method === "PATCH") {
+    const { id, status } = req.body;
+
+    if (!id || !status) {
+      return res
+        .status(422)
+        .json({ status: "failed", message: "Invalid Data!" });
+    }
+    const result = await User.updateOne(
+      { "todos._id": id },
+      { $set: { "todo.$.status": status } }
+    );
+    console.log(result);
+    res.status(200).json({ status: "success " });
   }
 }
 

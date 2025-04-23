@@ -30,10 +30,24 @@ const authOptions = {
 
         if (!isValid) throw new Error("Username or password is incorrect!");
 
-        return { email };
+        return { email: user.email, id: user._id };
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.email = token.email;
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
