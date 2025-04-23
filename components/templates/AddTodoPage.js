@@ -19,7 +19,6 @@ function AddTodoPage() {
     });
     const data = await res.json();
     if (data.status === "success") {
-      console.log(data);
       setTitle("");
       setStatus("todo");
       toast.success("Todo added!", {

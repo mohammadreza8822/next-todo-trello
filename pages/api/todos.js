@@ -57,7 +57,7 @@ async function handler(req, res) {
       { "todos._id": id },
       { $set: { "todo.$.status": status } }
     );
-    console.log(result);
+
     res.status(200).json({ status: "success " });
   }
 }

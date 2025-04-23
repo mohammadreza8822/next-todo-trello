@@ -10,7 +10,6 @@ function SigninPage() {
   const router = useRouter();
 
   const { status } = useSession();
-  console.log(status);
 
   // useEffect(() => {
   //   if (status === "authenticated") {
