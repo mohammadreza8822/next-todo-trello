@@ -1,15 +1,16 @@
-import { signIn, useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-function SignInPage() {
+function SigninPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
 
   const { status } = useSession();
+  console.log(status);
 
   useEffect(() => {
     if (status === "authenticated") router.replace("/");
@@ -21,6 +22,7 @@ function SignInPage() {
       password,
       redirect: false,
     });
+
     if (!res.error) router.push("/");
   };
 
@@ -42,10 +44,10 @@ function SignInPage() {
       <button onClick={loginHandler}>Login</button>
       <div>
         <p>Create an account?</p>
-        <Link href={"/signup"}>SignUp</Link>
+        <Link href="/signup">Sign up</Link>
       </div>
     </div>
   );
 }
 
-export default SignInPage;
+export default SigninPage;

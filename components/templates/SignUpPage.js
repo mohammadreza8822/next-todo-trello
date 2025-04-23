@@ -1,9 +1,9 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-function SignUpPage() {
+function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -44,10 +44,10 @@ function SignUpPage() {
       <button onClick={signUpHandler}>Register</button>
       <div>
         <p>Have an account?</p>
-        <Link href={"/signin"}>Sign in</Link>
+        <Link href="/signin">Sign in</Link>
       </div>
     </div>
   );
 }
 
-export default SignUpPage;
+export default SignupPage;
