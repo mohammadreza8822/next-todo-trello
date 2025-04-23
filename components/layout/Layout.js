@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiLogIn } from "react-icons/fi";
 import { VscListSelection } from "react-icons/vsc";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
@@ -14,11 +14,11 @@ function Layout({ children }) {
     <div className="container">
       <header>
         <p>Todo Next App</p>
-        {status === "authenticated" && (
+        {status === "authenticated" ? (
           <button onClick={logOutHandler}>
             Log Out <FiLogOut />
           </button>
-        )}
+        ) : null}
       </header>
       <div className="container--main">
         <aside>
@@ -35,6 +35,10 @@ function Layout({ children }) {
             <li>
               <RxDashboard />
               <Link href={"/profile"}>Profile</Link>
+            </li>
+            <li>
+              <FiLogIn />
+              <Link href={"/signin"}>Sign In</Link>
             </li>
           </ul>
         </aside>

@@ -11,9 +11,9 @@ function SignupPage() {
 
   const { status } = useSession();
 
-  // useEffect(() => {
-  //   if (status !== "loading" && status === "authenticated") router.replace("/");
-  // }, [status]);
+  useEffect(() => {
+    if (status !== "loading" && status === "authenticated") router.replace("/");
+  }, [status]);
 
   const signUpHandler = async () => {
     const res = await fetch("/api/auth/signup", {

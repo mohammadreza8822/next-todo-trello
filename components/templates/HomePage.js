@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Tasks from "../module/Tasks";
+import { ToastContainer, toast } from "react-toastify";
 
 function HomePage() {
   const [todos, setTodos] = useState([]);
@@ -42,6 +43,7 @@ function HomePage() {
         <p>Done</p>
         <Tasks data={todos.done} fetchTodos={fetchTodos} back="review" />
       </div>
+      <ToastContainer />
     </div>
   );
 }
