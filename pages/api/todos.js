@@ -35,11 +35,11 @@ async function handler(req, res) {
     if (!title || !status) {
       return res
         .status(422)
-        .json({ status: "failed", message: "Invalid data!" });
+        .json({ status: "failed", message: "Invaild data!" });
     }
 
     user.todos.push({ title, status });
-    await user.save();
+    user.save();
 
     res.status(201).json({ status: "success", message: "Todo created!" });
   } else if (req.method === "GET") {
@@ -51,14 +51,15 @@ async function handler(req, res) {
     if (!id || !status) {
       return res
         .status(422)
-        .json({ status: "failed", message: "Invalid Data!" });
+        .json({ status: "failed", message: "Invalid data!" });
     }
+
     const result = await User.updateOne(
       { "todos._id": id },
-      { $set: { "todo.$.status": status } }
+      { $set: { "todos.$.status": status } }
     );
 
-    res.status(200).json({ status: "success " });
+    res.status(200).json({ status: "success" });
   }
 }
 

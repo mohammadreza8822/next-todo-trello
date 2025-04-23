@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "../module/Tasks";
 
 function HomePage() {
@@ -11,7 +11,6 @@ function HomePage() {
   const fetchTodos = async () => {
     const res = await fetch("/api/todos");
     const data = await res.json();
-
     if (data.status === "success") setTodos(data.data.todos);
   };
 
