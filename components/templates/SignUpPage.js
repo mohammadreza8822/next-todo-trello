@@ -12,7 +12,7 @@ function SignupPage() {
   const { status } = useSession();
 
   useEffect(() => {
-    if (status !== "loading" && status === "authenticated") router.replace("/");
+    if (status === "authenticated") router.replace("/");
   }, [status]);
 
   const signUpHandler = async () => {
